@@ -11,7 +11,7 @@ export async function searchMovies() {
     );
     return res.data.result || [];
   } catch (error) {
-    console.error("Erro occured", error);
+    console.error("Error occured", error);
     throw error;
   }
 }
