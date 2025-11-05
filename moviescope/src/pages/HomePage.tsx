@@ -1,8 +1,4 @@
-import {
-  searchMovies,
-  original_image_base_url,
-  image_base_url,
-} from "../hook/useTMDBApi.ts";
+import { searchMovies, original_image_base_url } from "../hook/useTMDBApi.ts";
 import { useQuery } from "@tanstack/react-query";
 
 export function HomePage() {
@@ -59,7 +55,10 @@ export function HomePage() {
           {movies.map((movie: any) => (
             <div key={movie.id} className="">
               <div>
-                <img src={`${original_image_base_url}${movie.poster_path}`} />
+                <img
+                  src={`${original_image_base_url}${movie.poster_path}`}
+                  alt={movie.poster_path ?? movie.title}
+                />
               </div>
             </div>
           ))}
