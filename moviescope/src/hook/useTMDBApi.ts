@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Movie, MovieResponse } from "../types/movie";
+import type { MovieResponse } from "../types/movie";
 
 const api_key = import.meta.env.VITE_TMDB_API_KEY;
 const api_url = import.meta.env.VITE_TMDB_BASE_URL;
