@@ -5,7 +5,7 @@ export interface Movie {
   backdrop_path?: string;
   vote_average?: number;
   vote_count?: number;
-  release_date?: number;
+  release_date?: string;
   popularity: number;
   poster_path: string;
 }
