@@ -1,13 +1,13 @@
 export interface Movie {
   id: number;
-  title: number;
-  overview: string;
-  backdrop_path: number;
+  title: string;
+  overview?: string;
+  backdrop_path?: string;
   vote_average?: number;
   vote_count?: number;
   release_date?: number;
   popularity: number;
-  poster_path: number;
+  poster_path: string;
 }
 
 export interface MovieResponse {
