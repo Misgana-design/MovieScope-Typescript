@@ -1,7 +1,7 @@
 export interface Movie {
   id: number;
-  title: string;
-  overview?: string;
+  title: string | null;
+  overview?: string | null;
   backdrop_path?: string | null;
   vote_average?: number;
   vote_count?: number;
