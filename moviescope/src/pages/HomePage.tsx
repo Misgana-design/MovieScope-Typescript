@@ -1,4 +1,4 @@
-import { searchMovies, original_image_base_url } from "../hook/useTMDBApi.ts";
+import { fetchTrending, original_image_base_url } from "../hook/useTMDBApi.ts";
 import { useQuery } from "@tanstack/react-query";
 import type { Movie } from "../types/movie.ts";
 
@@ -10,7 +10,7 @@ export function HomePage() {
     isFetching,
   } = useQuery<Movie[]>({
     queryKey: ["trending"],
-    queryFn: searchMovies,
+    queryFn: fetchTrending,
     staleTime: 1000 * 50,
     refetchOnWindowFocus: true,
   });
