@@ -49,10 +49,14 @@ export function HomePage() {
           ></div>
           <div>
             <p className="font-extrabold text-7xl py-4 bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text">
-              {typeof firstMovie.title === "string" && firstMovie.title}
+              {typeof firstMovie.title === "string"
+                ? firstMovie.title
+                : "No title for this movie"}
             </p>
             <div className="text-white w-100 font-mono mt-3">
-              {typeof firstMovie.overview === "string" && firstMovie.overview}
+              {typeof firstMovie.overview === "string"
+                ? firstMovie.overview
+                : "No overview for this movie"}
             </div>
             <button className="w-30 h-10 text-lg font-bold mt-3 border-green-500 text-white border-2 rounded hover:bg-green-500 hover:text-black duration-150">
               Watch now
