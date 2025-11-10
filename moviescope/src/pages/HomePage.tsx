@@ -1,6 +1,7 @@
 import { fetchTrending, original_image_base_url } from "../hook/useTMDBApi.ts";
 import { useQuery } from "@tanstack/react-query";
 import type { Movie } from "../types/movie.ts";
+import { fetchTrendingTvSeries } from "../hook/useTMDBApi.ts";
 
 export function HomePage() {
   const {
@@ -15,9 +16,18 @@ export function HomePage() {
     refetchOnWindowFocus: true,
   });
 
-  if (isLoading)
+  const {
+    data,
+    isLoading: loading,
+    error: isError,
+  } = useQuery<Movie[]>({
+    queryKey: ["trendingTv"],
+    queryFn: fetchTrendingTvSeries,
+  });
+
+  if (isLoading || loading)
     return <p className="text-center text-white text-3xl mt-30">Loading...</p>;
-  if (error)
+  if (error || isError)
     return (
       <p className="text-center text-red-500 text-3xl mt-30">
         Something went wrong
@@ -83,6 +93,17 @@ export function HomePage() {
           </div>
         </div>
       )}
+      <div className="text-3xl text-white font-bold px-22 mt-15">
+        Trending TV series this week
+        <div className="grid grid-cols-5 gap-5 mt-8">
+          {data?.map((tv) => (
+            <img
+              src={`${original_image_base_url}${tv.poster_path}`}
+              alt={`${tv.title}`}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 }
