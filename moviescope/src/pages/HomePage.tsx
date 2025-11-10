@@ -1,5 +1,6 @@
 import { searchMovies, original_image_base_url } from "../hook/useTMDBApi.ts";
 import { useQuery } from "@tanstack/react-query";
+import type { Movie } from "../types/movie.ts";
 
 export function HomePage() {
   const {
@@ -7,7 +8,7 @@ export function HomePage() {
     isLoading,
     error,
     isFetching,
-  } = useQuery({
+  } = useQuery<Movie[]>({
     queryKey: ["trending"],
     queryFn: searchMovies,
     staleTime: 1000 * 50,
@@ -48,10 +49,10 @@ export function HomePage() {
           ></div>
           <div>
             <p className="font-extrabold text-7xl py-4 bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text">
-              {firstMovie.title}
+              {typeof firstMovie.title === "string" && firstMovie.title}
             </p>
             <div className="text-white w-100 font-mono mt-3">
-              {firstMovie.overview}
+              {typeof firstMovie.overview === "string" && firstMovie.overview}
             </div>
             <button className="w-30 h-10 text-lg font-bold mt-3 border-green-500 text-white border-2 rounded hover:bg-green-500 hover:text-black duration-150">
               Watch now
@@ -66,10 +67,12 @@ export function HomePage() {
             {movies.map((movie) => (
               <div key={movie.id}>
                 <div>
-                  <img
-                    src={`${original_image_base_url}${movie.poster_path}`}
-                    alt={movie.poster_path ?? movie.title}
-                  />
+                  {typeof movie.poster_path === "string" && (
+                    <img
+                      src={`${original_image_base_url}${movie.poster_path}`}
+                      alt={movie.poster_path ?? movie.title}
+                    />
+                  )}
                 </div>
               </div>
             ))}
