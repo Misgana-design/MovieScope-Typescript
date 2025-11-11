@@ -12,7 +12,7 @@ export interface Movie {
 
 export interface MovieResponse {
   page: number;
-  results: Array<Movie>;
+  results: Array<Movie[]>;
   total_pages: number;
   total_results: number;
 }
