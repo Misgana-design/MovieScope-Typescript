@@ -7,7 +7,7 @@ export const image_base_url = import.meta.env.IMAGE_BASE_URL;
 export const original_image_base_url = import.meta.env
   .VITE_ORIGINAL_IMAGE_BASE_URL;
 
-export async function searchMovies(): Promise<Movie[]> {
+export async function fetchTrending(): Promise<Movie[]> {
   try {
     const res = await axios.get(
       `${api_url}/trending/movie/week?api_key=${api_key}`
@@ -15,6 +15,18 @@ export async function searchMovies(): Promise<Movie[]> {
     return res.data.results || [];
   } catch (error) {
     console.error("Error occured", error);
+    throw error;
+  }
+}
+
+export async function fetchTrendingTvSeries(): Promise<Movie[]> {
+  try {
+    const res = await axios.get(
+      `${api_url}/trending/tv/week?api_key=${api_key}`
+    );
+    return res.data.results || [];
+  } catch (error) {
+    console.log("Error occured", error);
     throw error;
   }
 }
