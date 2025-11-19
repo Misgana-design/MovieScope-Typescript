@@ -88,6 +88,7 @@ export function HomePage() {
                     />
                   )}
                 </div>
+                <button>♥ ♡</button>
               </div>
             ))}
           </div>
