@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, createContext, useContext } from "react";
 import {
   loadFromLocalStorage,
   saveToLocalStorage,
@@ -18,23 +18,38 @@ function reducer(state, action) {
   }
 }
 
-const { state, dispatch } = useReducer(reducer, () => {
-  const state = loadFromLocalStorage();
-  return state ?? [];
-});
+export const FavoritesContext = createContext();
 
-useEffect(() => {
-  saveToLocalStorage(state);
-}, [state]);
+export function FavoritesProvider({ children }) {
+  const { state, dispatch } = useReducer(reducer, undefined, () => {
+    const state = loadFromLocalStorage();
+    return state ?? [];
+  });
 
-function addFavorites(item) {
-  dispatch({ type: "ADD_FAVORITES", payload: item });
+  useEffect(() => {
+    saveToLocalStorage(state);
+  }, [state]);
+
+  function addFavorites(item) {
+    dispatch({ type: "ADD_FAVORITES", payload: item });
+  }
+
+  function removeFavorites(item) {
+    dispatch({ type: "REMOVE_FAVORITES", payload: item });
+  }
+
+  function isFavorite(item) {
+    return state.some((fav) => fav.id === item.id);
+  }
+
+  <FavoritesContext.Provider
+    value={(addFavorites, removeFavorites, isFavorite, state)}
+  >
+    {children}
+  </FavoritesContext.Provider>;
 }
 
-function removeFavorites(item) {
-  dispatch({ type: "REMOVE_FAVORITES", payload: item });
-}
-
-function isFavorite(item) {
-  return state.some((fav) => fav.id === item.id);
+export function useFavorites() {
+  const values = useContext(FavoritesContext);
+  return values;
 }
