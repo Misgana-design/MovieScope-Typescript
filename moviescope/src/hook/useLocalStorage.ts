@@ -1,12 +1,15 @@
-export function loadFromLocalStorage() {
+import type { Movie } from "../types/movie";
+
+export function loadFromLocalStorage(): Movie[] | undefined {
   try {
-    const data = window.localStorage.getItem("favorites");
-    return JSON.parse(data);
+    const data: string | null = window.localStorage.getItem("favorites");
+    return JSON.parse(data) || [];
   } catch (error) {
-    console.error("Error loading favorites");
+    console.error("Error loading favorites", error);
   }
 }
-export function saveToLocalStorage(data) {
+
+export function saveToLocalStorage(data: Movie[]) {
   try {
     window.localStorage.setItem("favorites", JSON.stringify(data));
   } catch (error) {
