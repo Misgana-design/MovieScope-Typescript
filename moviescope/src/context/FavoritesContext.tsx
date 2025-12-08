@@ -31,11 +31,15 @@ interface FavoritesValueType {
   state: Movie[];
 }
 
+interface Child {
+  children: ReactNode;
+}
+
 export const FavoritesContext = createContext<FavoritesValueType | undefined>(
   undefined
 );
 
-export function FavoritesProvider({ children }: { children: ReactNode }) {
+export function FavoritesProvider({ children }: Child) {
   const [state, dispatch] = useReducer(reducer, undefined, () => {
     const state = loadFromLocalStorage();
     return state ?? [];
