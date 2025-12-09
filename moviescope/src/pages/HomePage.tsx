@@ -2,6 +2,8 @@ import { fetchTrending, original_image_base_url } from "../hook/useTMDBApi.ts";
 import { useQuery } from "@tanstack/react-query";
 import type { Movie } from "../types/movie.ts";
 import { fetchTrendingTvSeries } from "../hook/useTMDBApi.ts";
+import { useFavorites } from "../context/FavoritesContext.tsx";
+import type { MouseEventHandler } from "react";
 
 export function HomePage() {
   const {
@@ -25,6 +27,8 @@ export function HomePage() {
     queryFn: fetchTrendingTvSeries,
   });
 
+  const { addFavorites, removeFavorites, isFavorite, state } = useFavorites();
+
   if (isLoading || loading)
     return <p className="text-center text-white text-3xl mt-30">Loading...</p>;
   if (error || isError)
@@ -42,11 +46,14 @@ export function HomePage() {
     );
 
   const firstMovie = movies[0];
+  interface clickEvents {
+    onClick: (event: MouseEventHandler<HTMLButtonElement> | undefined) => void;
+  }
 
   return (
     <>
       {firstMovie && typeof firstMovie.backdrop_path === "string" && (
-        <div className="flex items-center gap-5 px-22 mt-26">
+        <div className="relative">
           <div
             style={{
               backgroundImage: `url(${original_image_base_url}${firstMovie.backdrop_path})`,
@@ -57,8 +64,8 @@ export function HomePage() {
               aspectRatio: "4/3",
             }}
           ></div>
-          <div>
-            <p className="font-extrabold text-7xl py-4 bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text">
+          <div className="absolute top-32 mx-20">
+            <p className="font-extrabold text-7xl py-4 bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text ">
               {typeof firstMovie.title === "string"
                 ? firstMovie.title
                 : "No title for this movie"}
@@ -75,24 +82,33 @@ export function HomePage() {
         </div>
       )}
       {movies && (
-        <div className="text-3xl font-bold text-white px-22 mt-15">
-          Trending movies this week
-          <div className="grid grid-cols-5 gap-6 mt-8">
-            {movies.map((movie) => (
-              <div key={movie.id}>
-                <div>
-                  {typeof movie.poster_path === "string" && (
-                    <img
-                      src={`${original_image_base_url}${movie.poster_path}`}
-                      alt={movie.poster_path ?? movie.title}
-                    />
-                  )}
+        <>
+          <hr />
+          <div className="text-3xl font-bold text-white px-22 mt-15">
+            Trending movies this week
+            <div className="grid grid-cols-5 gap-6 mt-8">
+              {movies.map((movie) => (
+                <div key={movie.id}>
+                  <div>
+                    {typeof movie.poster_path === "string" && (
+                      <img
+                        src={`${original_image_base_url}${movie.poster_path}`}
+                        alt={movie.poster_path ?? movie.title}
+                      />
+                    )}
+                  </div>
+                  <button
+                    onClick={() =>
+                      isFavorite ? removeFavorites(movie) : addFavorites(movie)
+                    }
+                  >
+                    {isFavorite(movie) ? "♥" : "♡"}
+                  </button>
                 </div>
-                <button>♥ ♡</button>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       )}
       <div className="text-3xl text-white font-bold px-22 mt-15">
         Trending TV series this week
