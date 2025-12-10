@@ -99,7 +99,9 @@ export function HomePage() {
                   </div>
                   <button
                     onClick={() =>
-                      isFavorite ? removeFavorites(movie) : addFavorites(movie)
+                      isFavorite(movie)
+                        ? removeFavorites(movie)
+                        : addFavorites(movie)
                     }
                   >
                     {isFavorite(movie) ? "♥" : "♡"}
