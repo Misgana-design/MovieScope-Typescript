@@ -27,7 +27,7 @@ export function HomePage() {
     queryFn: fetchTrendingTvSeries,
   });
 
-  const { addFavorites, removeFavorites, isFavorite, state } = useFavorites();
+  const { addFavorites, removeFavorites, isFavorite } = useFavorites();
 
   if (isLoading || loading)
     return <p className="text-center text-white text-3xl mt-30">Loading...</p>;
@@ -86,9 +86,12 @@ export function HomePage() {
           <hr />
           <div className="text-3xl font-bold text-white px-22 mt-15">
             Trending movies this week
-            <div className="grid grid-cols-5 gap-6 mt-8">
+            <div className="relative grid grid-cols-5 gap-6 mt-8">
               {movies.map((movie) => (
-                <div key={movie.id}>
+                <div
+                  key={movie.id}
+                  className="relative hover:cursor-pointer hover:scale-110 duration-150"
+                >
                   <div>
                     {typeof movie.poster_path === "string" && (
                       <img
@@ -103,6 +106,7 @@ export function HomePage() {
                         ? removeFavorites(movie)
                         : addFavorites(movie)
                     }
+                    className="absolute left-0.5 bottom-2 bg-linear-to-r from-blue-500 to-green-500 p-2 rounded-full"
                   >
                     {isFavorite(movie) ? "♥" : "♡"}
                   </button>
@@ -114,12 +118,14 @@ export function HomePage() {
       )}
       <div className="text-3xl text-white font-bold px-22 mt-15">
         Trending TV series this week
-        <div className="grid grid-cols-5 gap-5 mt-8">
+        <div className="grid grid-cols-5 gap-5 mt-8 ">
           {data?.map((tv) => (
-            <img
-              src={`${original_image_base_url}${tv.poster_path}`}
-              alt={`${tv.title}`}
-            />
+            <div className="hover:cursor-pointer hover:scale-110 duration-150">
+              <img
+                src={`${original_image_base_url}${tv.poster_path}`}
+                alt={`${tv.title}`}
+              />
+            </div>
           ))}
         </div>
       </div>
