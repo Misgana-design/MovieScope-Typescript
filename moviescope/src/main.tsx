@@ -6,11 +6,11 @@ import { FavoritesProvider } from "./context/FavoritesContext.tsx";
 import "./index.css";
 import App from "./App.tsx";
 
-const quertClient = new QueryClient();
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <QueryClientProvider client={quertClient}>
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <FavoritesProvider>
           <App />
