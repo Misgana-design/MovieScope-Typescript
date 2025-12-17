@@ -7,7 +7,7 @@ export interface Movie {
   vote_count?: number;
   release_date?: string;
   popularity: number;
-  poster_path: string | null;
+  poster_path: string | undefined;
 }
 
 export interface MovieResponse {
