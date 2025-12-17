@@ -4,6 +4,7 @@ import type { Movie } from "../types/movie.ts";
 import { fetchTrendingTvSeries } from "../hook/useTMDBApi.ts";
 import { useFavorites } from "../context/FavoritesContext.tsx";
 import type { MouseEventHandler } from "react";
+import '../pages/Search.css'
 
 export function HomePage() {
   const {
@@ -61,11 +62,11 @@ export function HomePage() {
               backgroundPosition: "center center",
               width: "100%",
               maxHeight: "500px",
-              aspectRatio: "4/3",
+              aspectRatio: "16/9",
             }}
           ></div>
           <div className="absolute top-32 mx-20">
-            <p className="font-extrabold text-7xl py-4 bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text ">
+            <p className="font-bold text-7xl py-4 bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text title">
               {typeof firstMovie.title === "string"
                 ? firstMovie.title
                 : "No title for this movie"}
@@ -106,7 +107,7 @@ export function HomePage() {
                         ? removeFavorites(movie)
                         : addFavorites(movie)
                     }
-                    className="absolute left-0.5 bottom-2 bg-linear-to-r from-blue-500 to-green-500 p-2 rounded-full"
+                    className="absolute left-0.5 bottom-2 bg-linear-to-r from-blue-500 to-green-500 p-2 rounded-full cursor-pointer"
                   >
                     {isFavorite(movie) ? "♥" : "♡"}
                   </button>
@@ -118,17 +119,28 @@ export function HomePage() {
       )}
       <div className="text-3xl text-white font-bold px-22 mt-15">
         Trending TV series this week
-        <div className="grid grid-cols-5 gap-5 mt-8 ">
+        <div className="grid grid-cols-5 gap-6 mt-8 ">
           {data?.map((tv) => (
-            <div className="hover:cursor-pointer hover:scale-110 duration-150">
-              <img
-                src={`${original_image_base_url}${tv.poster_path}`}
-                alt={`${tv.title}`}
-              />
+            <div className="relative hover:cursor-pointer hover:scale-110 duration-150">
+              <div>
+                <img
+                  src={`${original_image_base_url}${tv.poster_path}`}
+                  alt={`${tv.title}`}
+                />
+              </div>
+              <button
+                onClick={() =>
+                  isFavorite(tv) ? removeFavorites(tv) : addFavorites(tv)
+                }
+                className="absolute left-0.5 bottom-2 bg-linear-to-r from-blue-500 to-green-500 p-2 rounded-full "
+              >
+                {isFavorite(tv) ? "♥" : "♡"}
+              </button>
             </div>
           ))}
         </div>
       </div>
+      <hr className="border-gray-400 border-t-2 my-4" />
     </>
   );
 }
