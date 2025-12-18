@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export function Header() {
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-10  flex justify-between text-white px-20 py-1 text-2xl">
+      <div className="fixed top-0 left-0 right-0 z-10  lg:flex justify-between text-white px-20 py-1 text-2xl bg-black hidden">
         <p className="text-3xl font-bold text-green-500">🎬MovieScope</p>
         <ul className="flex gap-20 ">
           <Link to={"/"}>
