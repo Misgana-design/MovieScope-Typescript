@@ -4,7 +4,7 @@ import type { Movie } from "../types/movie.ts";
 import { fetchTrendingTvSeries } from "../hook/useTMDBApi.ts";
 import { useFavorites } from "../context/FavoritesContext.tsx";
 import type { MouseEventHandler } from "react";
-import '../pages/Search.css'
+import "../pages/Search.css";
 
 export function HomePage() {
   const {
@@ -54,7 +54,7 @@ export function HomePage() {
   return (
     <>
       {firstMovie && typeof firstMovie.backdrop_path === "string" && (
-        <div className="relative">
+        <div className="relative mt-12">
           <div
             style={{
               backgroundImage: `url(${original_image_base_url}${firstMovie.backdrop_path})`,
@@ -84,10 +84,10 @@ export function HomePage() {
       )}
       {movies && (
         <>
-          <hr />
-          <div className="text-3xl font-bold text-white px-22 mt-15">
+          <hr className="border-2 border-white" />
+          <div className="text-3xl font-bold text-white px-22 mt-25">
             Trending movies this week
-            <div className="relative grid grid-cols-5 gap-6 mt-8">
+            <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-8">
               {movies.map((movie) => (
                 <div
                   key={movie.id}
@@ -107,7 +107,7 @@ export function HomePage() {
                         ? removeFavorites(movie)
                         : addFavorites(movie)
                     }
-                    className="absolute left-0.5 bottom-2 bg-linear-to-r from-blue-500 to-green-500 p-2 rounded-full cursor-pointer"
+                    className="absolute left-0.5 bottom-2 bg-linear-to-r from-blue-500 to-green-500 p-1 md:p-1.5 lg:p-2 rounded-full cursor-pointer"
                   >
                     {isFavorite(movie) ? "♥" : "♡"}
                   </button>
@@ -119,7 +119,7 @@ export function HomePage() {
       )}
       <div className="text-3xl text-white font-bold px-22 mt-15">
         Trending TV series this week
-        <div className="grid grid-cols-5 gap-6 mt-8 ">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-8 ">
           {data?.map((tv) => (
             <div className="relative hover:cursor-pointer hover:scale-110 duration-150">
               <div>
@@ -132,7 +132,7 @@ export function HomePage() {
                 onClick={() =>
                   isFavorite(tv) ? removeFavorites(tv) : addFavorites(tv)
                 }
-                className="absolute left-0.5 bottom-2 bg-linear-to-r from-blue-500 to-green-500 p-2 rounded-full "
+                className="absolute left-0.5 bottom-2 bg-linear-to-r from-blue-500 to-green-500 p-1 md:p-1.5 lg:p-2 rounded-full "
               >
                 {isFavorite(tv) ? "♥" : "♡"}
               </button>
