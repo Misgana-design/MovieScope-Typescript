@@ -16,3 +16,4 @@ export interface MovieResponse {
   total_pages: number;
   total_results: number;
 }
+
