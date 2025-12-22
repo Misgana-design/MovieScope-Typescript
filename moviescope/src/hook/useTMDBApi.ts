@@ -7,7 +7,9 @@ export const image_base_url = import.meta.env.IMAGE_BASE_URL;
 export const original_image_base_url = import.meta.env
   .VITE_ORIGINAL_IMAGE_BASE_URL;
 
-export async function searchMovies(query: string): Promise<Movie[]> {
+export async function searchMovies(
+  query: string
+): Promise<Movie[] | undefined> {
   try {
     const res = await axios.get(
       `${api_url}/search/movie?api_key=${api_key}&query=${encodeURIComponent(
@@ -17,6 +19,7 @@ export async function searchMovies(query: string): Promise<Movie[]> {
     return res.data.results;
   } catch (error) {
     console.error("Error occured", error);
+    throw error;
   }
 }
 
