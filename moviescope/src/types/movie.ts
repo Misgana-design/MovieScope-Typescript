@@ -17,3 +17,10 @@ export interface MovieResponse {
   total_results: number;
 }
 
+export interface Logo {
+  aspect_ratio: number;
+  file_path: string | never[];
+  height: number;
+  width: number;
+  iso_639_1: string;
+}
