@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export function Header() {
+  const [open, isOpen] = useState(false);
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-10 flex lg:flex-row justify-between text-white px-5 md:px-15 py-1 text-2xl bg-black">
-        <p className="lg:text-3xl text-2xl font-bold text-green-500">🎬MovieScope</p>
-        <ul className=" hidden lg:flex md:flex lg:flex-row md:flex-row gap-20 md:gap-5">
+        <p className="lg:text-3xl text-2xl font-bold text-green-500">
+          🎬MovieScope
+        </p>
+        <ul className="hidden md:flex md:flex-row gap-20 md:gap-5">
           <Link to={"/"}>
             <li className="hover:bg-gray-700 hover:cursor-pointer py-1 px-3">
               Home
