@@ -3,7 +3,6 @@ import {
   original_image_base_url,
   api_key,
   api_url,
-  image_base_url,
 } from "../hook/useTMDBApi.ts";
 import "./Search.css";
 import { useQuery } from "@tanstack/react-query";
@@ -13,6 +12,7 @@ import { useFavorites } from "../context/FavoritesContext.tsx";
 // import { type MouseEventHandler } from "react";
 import "../pages/Search.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export function HomePage() {
   const {
@@ -95,7 +95,7 @@ export function HomePage() {
             }}
             className="max lg:hidden md:hidden"
           ></div>
-          <div className="absolute top-10 sm:top-20 md:top-32 lg:top-32 sm:mx-20 mx-10">
+          <div className="absolute top-20 sm:top-20 md:top-32 lg:top-32 sm:mx-20 mx-10">
             {/* <p className="font-bold text-7xl py-4 bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text title">
               {typeof firstMovie.title === "string"
                 ? firstMovie.title
@@ -105,7 +105,7 @@ export function HomePage() {
               {logo[0] && logo[0].iso_639_1 === "en" && (
                 <>
                   <img
-                    className="w-50 h-auto"
+                    className="w-60 h-auto"
                     src={`${original_image_base_url}${logo[0]?.file_path}`}
                     alt={movies[0].title}
                   />
@@ -118,7 +118,7 @@ export function HomePage() {
                 ? movies[0].overview
                 : "No overview for this movie"}
             </div>
-            <button className="lg:w-30 lg:h-10 lg:text-lg text-sm w-23 h-7 font-bold mt-3 border-green-500 text-white border-2 rounded hover:bg-green-500 hover:text-black duration-150">
+            <button className="lg:w-30 lg:h-10 lg:text-lg md:w-27 md:h-9 md:text-base text-sm w-23 h-7 font-bold mt-3 border-green-500 text-white border-2 rounded hover:bg-green-500 hover:text-black duration-150 hover:cursor-pointer">
               Watch now
             </button>
           </div>
@@ -137,10 +137,12 @@ export function HomePage() {
                 >
                   <div>
                     {typeof movie.poster_path === "string" && (
-                      <img
-                        src={`${original_image_base_url}${movie.poster_path}`}
-                        alt={movie.poster_path ?? movie.title}
-                      />
+                      <Link to={`${movie.id}`}>
+                        <img
+                          src={`${original_image_base_url}${movie.poster_path}`}
+                          alt={movie.poster_path ?? movie.title}
+                        />
+                      </Link>
                     )}
                   </div>
                   <button
