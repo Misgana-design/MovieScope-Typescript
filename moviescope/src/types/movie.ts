@@ -23,4 +23,5 @@ export interface Logo {
   height: number;
   width: number;
   iso_639_1: string;
+  length: number;
 }
