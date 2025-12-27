@@ -17,7 +17,7 @@ export function FavoritesPage() {
     <>
       {state && (
         <>
-          <h1 className="text-5xl font-extrabold bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text mt-15 text-center">
+          <h1 className="text-5xl font-mono bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text mt-15 text-center">
             Your Favorites
           </h1>
           <div className="grid grid-cols-5 gap-6 px-22 mt-15">
