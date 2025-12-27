@@ -127,7 +127,7 @@ export function HomePage() {
       {movies && (
         <>
           <hr className="border-2 border-white" />
-          <div className="text-3xl font-bold text-white px-22 mt-25">
+          <div className="lg:text-3xl md:text-2xl text-xl font-bold text-white px-22 mt-25">
             Trending movies this week
             <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-8">
               {movies.map((movie) => (
@@ -161,7 +161,7 @@ export function HomePage() {
           </div>
         </>
       )}
-      <div className="text-3xl text-white font-bold px-22 mt-15">
+      <div className="lg:text-3xl md:text-2xl text-xl text-white font-bold px-22 mt-15">
         Trending TV series this week
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-8 ">
           {data?.map((tv) => (
