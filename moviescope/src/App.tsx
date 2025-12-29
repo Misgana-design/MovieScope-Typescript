@@ -4,6 +4,7 @@ import { Header } from "./layout/Header";
 import { HomePage } from "./pages/HomePage";
 import { FavoritesPage } from "./pages/FavoritesPage";
 import { SearchPage } from "./pages/SearchPage";
+import { MovieDetail } from "./pages/MovieDetailPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/Favorites" element={<FavoritesPage />} />
         <Route path="/Search" element={<SearchPage />} />
+        <Route path="./movie/:id" element={<MovieDetail />} />
       </Routes>
     </>
   );
