@@ -102,7 +102,7 @@ export function HomePage() {
                 : "No title for this movie"}
             </p> */}
             <div>
-              {logo[0] && logo[0].iso_639_1 === "en" && (
+              {logo[0] && logo[0]?.iso_639_1 === "en" && (
                 <>
                   <img
                     className="w-60 h-auto"
