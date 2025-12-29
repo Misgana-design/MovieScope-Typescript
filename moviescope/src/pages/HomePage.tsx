@@ -137,7 +137,7 @@ export function HomePage() {
                 >
                   <div>
                     {typeof movie.poster_path === "string" && (
-                      <Link to={`${movie.id}`}>
+                      <Link to={`/movie/${movie.id}`}>
                         <img
                           src={`${original_image_base_url}${movie.poster_path}`}
                           alt={movie.poster_path ?? movie.title}
@@ -169,12 +169,15 @@ export function HomePage() {
               key={tv.id}
               className="relative hover:cursor-pointer hover:scale-110 duration-150"
             >
-              <div>
-                <img
-                  src={`${original_image_base_url}${tv.poster_path}`}
-                  alt={`${tv.title}`}
-                />
-              </div>
+              <Link to={`movie/${tv.id}`}>
+                <div>
+                  <img
+                    src={`${original_image_base_url}${tv.poster_path}`}
+                    alt={`${tv.title}`}
+                  />
+                </div>
+              </Link>
+
               <button
                 onClick={() =>
                   isFavorite(tv) ? removeFavorites(tv) : addFavorites(tv)
