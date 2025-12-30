@@ -105,7 +105,7 @@ export function HomePage() {
               {logo[0] && logo[0]?.iso_639_1 === "en" && (
                 <>
                   <img
-                    className="w-60 h-auto"
+                    className="lg:w-60 md:w-50 w-40 h-auto"
                     src={`${original_image_base_url}${logo[0]?.file_path}`}
                     alt={movies[0].title}
                   />
