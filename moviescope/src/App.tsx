@@ -5,6 +5,7 @@ import { HomePage } from "./pages/HomePage";
 import { FavoritesPage } from "./pages/FavoritesPage";
 import { SearchPage } from "./pages/SearchPage";
 import { MovieDetail } from "./pages/MovieDetailPage";
+import { TvDetail } from "./pages/TvDetailPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/Favorites" element={<FavoritesPage />} />
         <Route path="/Search" element={<SearchPage />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
+        <Route path="/tv/:id" element={<TvDetail />} />
       </Routes>
     </>
   );
