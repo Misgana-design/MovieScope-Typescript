@@ -169,7 +169,7 @@ export function HomePage() {
               key={tv.id}
               className="relative hover:cursor-pointer hover:scale-110 duration-150"
             >
-              <Link to={`/movie/${tv.id}`}>
+              <Link to={`/tv/${tv.id}`}>
                 <div>
                   <img
                     src={`${original_image_base_url}${tv.poster_path}`}
