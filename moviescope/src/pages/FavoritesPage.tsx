@@ -13,12 +13,13 @@ export function FavoritesPage() {
       </>
     );
   }
+
   return (
     <>
       {state && (
         <>
           <h1 className="text-2xl md:text-3xl lg:text-5xl font-mono bg-linear-to-r from-blue-500 to-green-500 text-transparent bg-clip-text mt-15 text-center">
-            Your Favorite movies
+            Your Favorite movies/tv series
           </h1>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 px-22 mt-15">
             {state.map((fav) => (
