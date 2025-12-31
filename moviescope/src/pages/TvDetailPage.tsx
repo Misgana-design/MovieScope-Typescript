@@ -50,7 +50,7 @@ export function TvDetail() {
         Something went wrong
       </h1>
     );
-  console.log(data.id);
+
   return (
     <>
       <div>
