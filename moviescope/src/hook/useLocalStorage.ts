@@ -1,11 +1,13 @@
 import type { Movie } from "../types/movie";
 
-export function loadFromLocalStorage(): Movie[] | undefined {
+export function loadFromLocalStorage(): Movie[] {
   try {
-    const data: string | null = window.localStorage.getItem("favorites");
-    return JSON.parse(data) || [];
+    const data = window.localStorage.getItem("favorites");
+    if (data === null) return [];
+    return JSON.parse(data) as Movie[];
   } catch (error) {
     console.error("Error loading favorites", error);
+    return [];
   }
 }
 
