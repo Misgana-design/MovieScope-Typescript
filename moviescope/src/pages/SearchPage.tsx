@@ -8,7 +8,7 @@ import "../pages/Search.css";
 export function SearchPage() {
   const [query, setQuery] = useState("");
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -19,7 +19,7 @@ export function SearchPage() {
     }
   }
 
-  const { data = [] } = useQuery<Movie[]>({
+  const { data = [] } = useQuery<Movie[] | undefined>({
     queryKey: ["query", query],
     queryFn: () => {
       return searchMovies(query);
@@ -62,12 +62,7 @@ export function SearchPage() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 px-22 mt-5 ">
               {data?.length > 0 &&
                 data
-                  ?.filter(
-                    (movie) =>
-                      movie &&
-                      movie.id &&
-                      (movie.poster_path || movie.backdrop_path)
-                  )
+                  ?.filter((movie) => movie && movie.id && movie.poster_path)
                   .map((movie) => (
                     <div className="hover:cursor-pointer hover:scale-110 duration-150">
                       <img
