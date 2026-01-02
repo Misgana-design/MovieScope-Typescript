@@ -15,6 +15,6 @@ export function saveToLocalStorage(data: Movie[]) {
   try {
     window.localStorage.setItem("favorites", JSON.stringify(data));
   } catch (error) {
-    console.error("Error saving favorties to local storage", error);
+    console.error("Error saving favorites to local storage", error);
   }
 }
